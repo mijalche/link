@@ -1,0 +1,44 @@
+{
+  "WFWorkflowClientRelease": "2.1",
+  "WFWorkflowClientVersion": "1060",
+  "WFWorkflowName": "LipiAI Magic!",
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.recordaudio",
+      "WFWorkflowActionParameters": {},
+      "UUID": "UUID-RECORD"
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.hidecontrolcenter",
+      "WFWorkflowActionParameters": {}
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.appintent",
+      "WFWorkflowActionParameters": {
+        "AppIntentIdentifier": "com.nakamura.lipiAI.TranscribeAudioAppIntent",
+        "IntentAppIdentifier": "com.nakamura.lipiAI",
+        "IntentDisplayName": "Transcribe",
+        "IntentParameters": {
+          "audioFile": {
+            "Type": "ActionOutput",
+            "OutputUUID": "UUID-RECORD"
+          },
+          "language": "English",
+          "role": "General",
+          "style": "Formal",
+          "mode": "Smart"
+        }
+      },
+      "UUID": "UUID-TRANSCRIBE"
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.copytoclipboard",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Type": "ActionOutput",
+          "OutputUUID": "UUID-TRANSCRIBE"
+        }
+      }
+    }
+  ]
+}
